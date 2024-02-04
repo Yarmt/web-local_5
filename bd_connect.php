@@ -12,7 +12,23 @@
     </head>
     <body>
     <?php
-    $connection = new mysqli('localhost', 'root', '', 'dataset_food');
+    $connection = new mysqli('localhost', 'root', '', 'lab5');
+    if ($connection->connect_error) {
+        die('Ошибка подключения к базе данных: ' . $connection->connect_error);
+    }
+    $sql = "SELECT ID FROM data";
+    $result = $connection->query($sql);
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            print_r($row);
+        }
+    } else {
+        echo "0 результатов";
+    }
+    $connection->close();
+    ?>
+    <?php
+    $connection = new mysqli('localhost', 'root', '', 'lab5_picture');
     if ($connection->connect_error) {
         die('Ошибка подключения к базе данных: ' . $connection->connect_error);
     }
